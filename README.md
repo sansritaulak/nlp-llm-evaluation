@@ -1,616 +1,161 @@
-\# Week 4: NLP \& LLMs - Sentiment Analysis System
+# NLP & LLM Evaluation Pipeline  
+**Prompt Engineering, Classical NLP Baselines, and Lightweight LLM Fine-Tuning**
 
+## Overview
+This repository implements an end-to-end **NLP experimentation and evaluation pipeline** focused on comparing classical supervised models with prompt-based and parameter-efficient LLM approaches. The project emphasizes **rigorous evaluation, reproducibility, and engineering discipline**, aligned with real-world ML workflows.
 
-
-\*\*Final Results Summary\*\*
-
-
-
-\## 🏆 Performance Comparison (Final Results)
-
-
-
-| Model | Test Accuracy | F1 Score | Inference Time | Model Size | Training Time |
-
-|-------|---------------|----------|----------------|------------|---------------|
-
-| Baseline (Logistic) | \*\*88.12%\*\* | 0.881 | ~1ms | 50MB | 3 min |
-
-| Baseline (SVM) | 86.33% | 0.863 | ~1ms | 50MB | 3 min |
-
-| Prompting (one-shot) | \*\*90.00%\*\* | N/A | 284ms | 900MB RAM | 0 min |
-
-| \*\*LoRA (DistilBERT)\*\* | \*\*91.34%\*\* ✅ | \*\*0.913\*\* | ~50ms | 5MB adapter | 6.3 min |
-
-
-
-\*\*Winner: LoRA Fine-tuned\*\* - Best accuracy (91.34%), efficient training, small adapter size
-
-
+The core task is **sentiment analysis on the IMDb movie reviews dataset**, extended with prompt engineering, retrieval-style search, and deployment-ready APIs.
 
 ---
 
-
-
-\## 📊 Detailed Results
-
-
-
-\### 1. Baseline Models
-
-
-
-\*\*Logistic Regression:\*\*
-
-\- Validation Accuracy: 88.76%
-
-\- Test Accuracy: 88.12%
-
-\- Per-class F1: Positive (0.881), Negative (0.881)
-
-
-
-\*\*Top Features:\*\*
-
-\- Positive: "great" (6.47), "excellent" (5.73), "best" (4.80)
-
-\- Negative: "worst" (-8.13), "bad" (-6.74), "awful" (-6.08)
-
-
-
-\*\*SVM:\*\*
-
-\- Test Accuracy: 86.33%
-
-\- Slightly lower than Logistic Regression
-
-
-
-\### 2. Prompt Engineering
-
-
-
-| Prompt Type | Accuracy | Avg Latency | Total Tokens |
-
-|-------------|----------|-------------|--------------|
-
-| Zero-shot | 89.0% | 0.307s | 155 |
-
-| \*\*One-shot\*\* | \*\*90.0%\*\* | 0.284s | 170 |
-
-| Three-shot | 89.0% | 0.316s | 216 |
-
-| Chain-of-thought | 88.0% | 0.286s | 201 |
-
-| Role-based | 90.0% | 0.274s | 189 |
-
-
-
-\*\*Best Prompt:\*\* One-shot and Role-based (90% accuracy)
-
-
-
-\*\*Surprising Finding:\*\* Prompting matched baseline accuracy with zero training!
-
-
-
-\### 3. LoRA Fine-tuning
-
-
-
-\*\*Configuration:\*\*
-
-\- Base Model: DistilBERT (66M parameters)
-
-\- LoRA Rank: 8, Alpha: 16
-
-\- Trainable Parameters: 0.3M (0.45% of total)
-
-
-
-\*\*Results:\*\*
-
-\- Test Accuracy: 91.34%
-
-\- Precision: 0.914
-
-\- Recall: 0.913
-
-\- F1 Score: 0.913
-
-
-
-\*\*Training:\*\*
-
-\- Time: 6.27 minutes
-
-\- Samples: 10,000 (training)
-
-\- Epochs: 3
-
-
-
-\### 4. Robustness Testing (Stress Tests)
-
-
-
-| Test Category | Baseline | LoRA |
-
-|---------------|----------|------|
-
-| \*\*Overall (63 tests)\*\* | 69.8% | 63.5% |
-
-| Simple Negation | 33.3% | 66.7% ✅ |
-
-| Double Negative | 66.7% | 33.3% |
-
-| Complex Negation | 50.0% | 100% ✅ |
-
-| Sarcasm (avg) | ~50% | ~40% |
-
-| OOD Content | ~80% | ~90% ✅ |
-
-
-
-\*\*Key Insight:\*\* LoRA better at complex patterns but both struggle with extreme sarcasm and triple negations.
-
-
-
-\### 5. Safety Evaluation
-
-
-
-\*\*Findings:\*\*
-
-\- Toxic content flags: 128/1000 (12.8%) - All false positives (movie plot descriptions)
-
-\- Gender bias: FALSE POSITIVE (999/1000 reviews mention gender naturally)
-
-\- Race bias: 0.3% difference (negligible)
-
-\- Age bias: 7.7% difference (acceptable)
-
-
-
-\*\*Verdict:\*\* ✅ Both models safe for production
-
-
+## Key Objectives
+- Build **strong NLP baselines** (Logistic Regression, SVM)
+- Design and evaluate **prompt-engineering strategies** (0-shot, 1-shot, multi-shot)
+- Fine-tune LLMs using **LoRA** under compute constraints
+- Perform **robust evaluation** (accuracy, latency, ranking metrics)
+- Package models for **API and Streamlit deployment**
+- Ensure **reproducibility and experiment tracking**
 
 ---
 
-
-
-\## 💰 Compute Budget
-
-
-
-| Component | Time | Cost | Resources |
-
-|-----------|------|------|-----------|
-
-| Baseline training | 3 min | $0 | CPU only |
-
-| Prompt evaluation | 0.83 min | $0 | Local model |
-
-| LoRA training | 6.3 min | $0 | GPU (local) |
-
-| \*\*Total\*\* | \*\*9.27 min\*\* | \*\*$0\*\* | Minimal |
-
-
-
-\*\*Efficiency:\*\*
-
-\- Total training: < 10 minutes
-
-\- All done locally (no API costs)
-
-\- Disk space: 55MB total
-
-
-
----
-
-
-
-\## 🎯 Key Findings
-
-
-
-\### 1. LoRA is Highly Effective
-
-\- \*\*+3.22% accuracy\*\* over baseline (88.12% → 91.34%)
-
-\- Only \*\*0.45% parameters\*\* trained
-
-\- \*\*5MB adapter\*\* vs 250MB full model
-
-
-
-\### 2. Prompting Surprisingly Good
-
-\- \*\*90% accuracy\*\* with zero training
-
-\- Matches baseline performance
-
-\- Great for rapid prototyping
-
-
-
-\### 3. Trade-offs Matter
-
-\- \*\*Speed critical?\*\* → Baseline (1ms)
-
-\- \*\*Few samples?\*\* → Prompting (0 training)
-
-\- \*\*Best accuracy?\*\* → LoRA (91.34%)
-
-
-
-\### 4. Stress Tests Reveal Limits
-
-\- Both models struggle with adversarial cases (63-70% accuracy)
-
-\- Real-world performance much better (88-91%)
-
-\- Importance of comprehensive testing
-
-
-
-\### 5. Safety is Manageable
-
-\- No significant bias detected
-
-\- Flagged content mostly false positives
-
-\- Ready for production with monitoring
-
-
-
----
-
-
-
-\## 📁 Project Structure
+## Project Structure
 
 ```
 
 week4-nlp-llms/
+│
+├── api/                    # FastAPI routes for inference
+├── data/
+│   ├── raw/                # (ignored) original datasets
+│   ├── processed/          # (ignored) cleaned data
+│   ├── splits/             # train/val/test splits
+│   └── stress_tests/       # adversarial / robustness tests
+│
+├── docs/                   # Reports and notes
+├── experiments/
+│   └── configs/            # Experiment configurations
+│
+├── notebooks/              # EDA, prompting, evaluation notebooks
+├── outputs/                # (ignored) models, logs, figures
+├── prompts/                # Prompt templates & variants
+├── scripts/                # Training and evaluation scripts
+├── search_engine/          # Lightweight semantic search pipeline
+├── src/
+│   ├── data/               # Data loading & validation
+│   ├── models/             # Classical & LLM-based models
+│   ├── evaluation/         # Metrics and benchmarks
+│   └── search/             # Indexing & retrieval logic
+│
+├── streamlit_app/          # Interactive demo UI
+├── tests/                  # Unit tests (data, metrics, pipelines)
+├── wandb/                  # (ignored) experiment tracking
+└── README.md
 
-├── data/                      # Datasets
-
-│   ├── processed/            # Cleaned IMDB data
-
-│   ├── splits/               # train/val/test
-
-│   └── stress\_tests/         # Edge cases
-
-├── src/                       # Source code
-
-│   ├── data/                 # Data loading
-
-│   ├── models/               # All 3 models
-
-│   ├── evaluation/           # Metrics, safety
-
-│   └── search/               # BM25 engine
-
-├── outputs/                   # Results
-
-│   ├── models/               # Saved models
-
-│   ├── results/              # Metrics JSON
-
-│   └── figures/              # Visualizations
-
-├── docs/                      # Documentation
-
-│   ├── PROMPT\_PLAYBOOK.md    # When to use what
-
-│   ├── DATASET\_CARD.md       # Dataset docs
-
-│   ├── MODEL\_CARD.md         # Model docs
-
-│   └── MITIGATION\_STRATEGIES.md
-
-├── api/                       # FastAPI app
-
-├── streamlit\_app/            # Demo UI
-
-└── tests/                     # Unit tests
-
-```
-
-
+````
 
 ---
 
+## Models & Methods
 
+### Classical NLP Baselines
+- TF-IDF + Logistic Regression  
+- TF-IDF + Linear SVM  
+- Strong baselines used for comparison and sanity checks
 
-\## 🚀 Quick Start
+### Prompt Engineering
+- ≥ 5 prompt templates (0-shot / 1-shot / 3-shot)
+- Logged:
+  - Prompt text
+  - Model response
+  - Latency
+  - Accuracy on held-out set
 
+### LLM Fine-Tuning
+- Parameter-Efficient Fine-Tuning (LoRA)
+- Checkpointed training
+- Compared against prompting and classical baselines
 
+---
 
-\### 1. Setup Environment
+## Evaluation
+- Accuracy, Precision, Recall, F1
+- Ranking metrics (MRR, nDCG) for search tasks
+- Latency benchmarking
+- Stress tests for robustness
+- Reproducible runs with fixed seeds
 
+---
+
+## Experiment Tracking & Reproducibility
+- **Weights & Biases** for experiment logging
+- Fixed random seeds
+- Structured configs
+- Clear separation of code, data, and artifacts
+
+---
+
+## Deployment
+- **FastAPI** for model inference
+- **Streamlit** application for interactive exploration
+- Serialized models for reuse
+
+---
+
+## How to Run
+
+### 1. Environment Setup
 ```bash
-
-\# Clone and setup
-
-git clone <repo>
-
-cd week4-nlp-llms
-
 python -m venv venv
-
-source venv/bin/activate  # Windows: venv\\Scripts\\activate
-
-
-
-\# Install dependencies
-
+source venv/bin/activate   # Windows: venv\Scripts\activate
 pip install -r requirements.txt
+````
+
+### 2. Data
+
+Download the IMDb dataset and place it under:
 
 ```
-
-
-
-\### 2. Download Data
-
-```bash
-
-python scripts/download\_data.py
-
-python -m src.data.loader
-
+data/raw/aclImdb/
 ```
 
-
-
-\### 3. Run Models
-
-
-
-\*\*Baseline:\*\*
+### 3. Train Baselines
 
 ```bash
-
-python -m src.models.baseline
-
-\# Output: 88.12% accuracy in 3 minutes
-
+python scripts/train_baseline.py
 ```
 
-
-
-\*\*Prompting:\*\*
+### 4. Run Evaluation
 
 ```bash
-
-python -m src.models.prompter
-
-\# Output: 90% accuracy, no training
-
+python scripts/evaluate.py
 ```
 
-
-
-\*\*LoRA:\*\*
+### 5. Launch API
 
 ```bash
-
-python -m src.models.finetuner
-
-\# Output: 91.34% accuracy in 6 minutes
-
-```
-
-
-
-\### 4. Start API
-
-```bash
-
 uvicorn api.main:app --reload
-
-\# Visit: http://localhost:8000/docs
-
 ```
 
-
-
-\### 5. Launch Demo
+### 6. Streamlit App
 
 ```bash
-
-streamlit run streamlit\_app/app.py
-
-\# Opens in browser automatically
-
+streamlit run streamlit_app/app.py
 ```
 
+---
 
+## Key Takeaways
+
+* Prompt engineering can be competitive with classical ML for certain tasks
+* Strong baselines remain essential for honest evaluation
+* LoRA enables efficient LLM fine-tuning under resource constraints
+* Reproducibility and logging are as important as model accuracy
 
 ---
 
-
-
-\## 📚 Documentation
-
-
-
-\- \*\*\[Prompt Playbook](docs/PROMPT\_PLAYBOOK.md)\*\* - Decision guide for choosing approaches
-
-\- \*\*\[Dataset Card](docs/DATASET\_CARD.md)\*\* - IMDB dataset documentation
-
-\- \*\*\[Model Card](docs/MODEL\_CARD.md)\*\* - Baseline and LoRA specifications
-
-\- \*\*\[Safety Report](outputs/results/safety\_report.txt)\*\* - Bias and toxicity analysis
-
-\- \*\*\[Mitigation Strategies](docs/MITIGATION\_STRATEGIES.md)\*\* - Handling failures
-
-
-
----
-
-
-
-\## 🎓 What I Learned
-
-
-
-\### Technical Skills
-
-\- ✅ Classical ML (TF-IDF, Logistic Regression)
-
-\- ✅ Modern NLP (Transformers, attention mechanisms)
-
-\- ✅ Prompt engineering (zero/few-shot learning)
-
-\- ✅ Parameter-efficient fine-tuning (LoRA)
-
-\- ✅ Production deployment (API, Docker)
-
-
-
-\### Best Practices
-
-\- ✅ Comprehensive testing (unit, stress, safety)
-
-\- ✅ Experiment tracking (W\&B)
-
-\- ✅ Documentation (cards, playbooks)
-
-\- ✅ Reproducibility (seeds, checksums)
-
-\- ✅ Ethical AI (bias analysis, safety checks)
-
-
-
-\### Key Insights
-
-1\. \*\*Start simple, iterate\*\* - Baseline establishes clear benchmark
-
-2\. \*\*Context matters\*\* - Transformers significantly better for complex cases
-
-3\. \*\*Efficiency is achievable\*\* - LoRA proves you don't need full fine-tuning
-
-4\. \*\*Test thoroughly\*\* - Stress tests reveal blind spots
-
-5\. \*\*Document everything\*\* - Future you (and others) will thank you
-
-
-
----
-
-
-
-\## 🔮 Future Work
-
-
-
-\- \[ ] Ensemble baseline + LoRA for optimal speed/accuracy
-
-\- \[ ] Aspect-based sentiment (separate ratings for plot, acting, etc.)
-
-\- \[ ] Multilingual support (mBERT, XLM-RoBERTa)
-
-\- \[ ] Active learning pipeline (label uncertain samples)
-
-\- \[ ] Drift detection and auto-retraining
-
-\- \[ ] Explainability dashboard (LIME, SHAP)
-
-
-
----
-
-
-
-\## 📊 Reproducibility
-
-
-
-\### Environment
-
-```
-
-Python: 3.10+
-
-OS: Windows/Linux/Mac
-
-GPU: Optional (CPU works, slower)
-
-RAM: 8GB minimum
-
-```
-
-
-
-\### Seeds and Checksums
-
-\- Random seed: 42 (all experiments)
-
-\- IMDB dataset MD5: `7c2ac02c03563afcf9b574c7e56c153a`
-
-\- Results reproducible within ±0.5%
-
-
-
-\### Dependencies
-
-All locked in `requirements.txt` with exact versions.
-
-
-
----
-
-
-
-\## 📄 License
-
-
-
-MIT License - See LICENSE file
-
-
-
----
-
-
-
-\## 🙏 Acknowledgments
-
-
-
-\- Stanford AI Lab for IMDB dataset
-
-\- Google for FLAN-T5
-
-\- Microsoft for LoRA
-
-\- HuggingFace for Transformers
-
-\- Anthropic for guidance
-
-
-
----
-
-
-
-\## 📧 Contact
-
-
-
-\*\*Author:\*\* Sansrita Ulak
-
-\*\*Email:\*\* usansrita@gmail.com
-
-\*\*Project:\*\* Week 4 NLP \& LLMs Internship  
-
-\*\*Date:\*\* December 2025  
-
-
-
-
-
+## Future Work
+
+* Larger-scale retrieval-augmented generation (RAG)
+* Better calibration and uncertainty estimation
+* Dataset shift and robustness benchmarking
+* Automated prompt search
