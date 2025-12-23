@@ -1,0 +1,42 @@
+{
+    "q1": {
+        "query": "best acting performance",
+        "relevant_docs": [1359, 3802, 5652, 3436, 753]
+    },
+    "q2": {
+        "query": "terrible plot",
+        "relevant_docs": [1145, 736, 3732, 2725, 6330]
+    },
+    "q3": {
+        "query": "masterpiece cinema",
+        "relevant_docs": [3863, 9768, 9001, 5026, 3]
+    },
+    "q4": {
+        "query": "waste of time",
+        "relevant_docs": [4701, 2537, 890, 9639, 6174]
+    },
+    "q5": {
+        "query": "amazing special effects",
+        "relevant_docs": [5131, 7199, 5189, 562, 5809]
+    },
+    "q6": {
+        "query": "boring predictable",
+        "relevant_docs": [8993, 5138, 7197, 2705, 7033]
+    },
+    "q7": {
+        "query": "emotional touching",
+        "relevant_docs": [5652, 9768, 9001, 5026, 3863]
+    },
+    "q8": {
+        "query": "disappointing sequel",
+        "relevant_docs": [3906, 1305, 4797, 125, 5356]
+    },
+    "q9": {
+        "query": "brilliant screenplay",
+        "relevant_docs": [6946, 9800, 4457, 8743, 9278]
+    },
+    "q10": {
+        "query": "overhyped overrated",
+        "relevant_docs": [4701, 2537, 890, 9639, 6174]
+    }
+}

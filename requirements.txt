@@ -1,0 +1,44 @@
+# Core Data Science
+pandas
+numpy
+scikit-learn
+scipy
+
+# NLP Libraries
+nltk
+rank-bm25
+
+# Hugging Face Ecosystem
+torch
+transformers
+datasets
+peft
+accelerate
+sentencepiece
+bitsandbytes
+
+# Experiment Tracking
+wandb
+
+# API & Web
+fastapi
+uvicorn
+pydantic
+
+# UI
+streamlit
+plotly
+
+# Testing
+pytest
+pytest-cov
+
+# Utilities
+tqdm
+loguru
+python-dotenv
+
+# Jupyter
+jupyter
+matplotlib
+seaborn

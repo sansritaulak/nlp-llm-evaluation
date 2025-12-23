@@ -1,0 +1,87 @@
+[
+  {
+    "text": "Oh great, another boring superhero movie. Just what we needed.",
+    "label": 0,
+    "type": "oh_great"
+  },
+  {
+    "text": "Yeah, because the world really needed a fifth sequel.",
+    "label": 0,
+    "type": "yeah_because"
+  },
+  {
+    "text": "Sure, this is definitely the best movie of the century. Not.",
+    "label": 0,
+    "type": "sure_definitely"
+  },
+  {
+    "text": "Wow, what an original plot. Never seen that before!",
+    "label": 0,
+    "type": "wow_original"
+  },
+  {
+    "text": "Brilliant! I loved every one of the 3 hours I'll never get back.",
+    "label": 0,
+    "type": "time_back"
+  },
+  {
+    "text": "Amazing! It made me want to walk out after 10 minutes.",
+    "label": 0,
+    "type": "walk_out"
+  },
+  {
+    "text": "Fantastic acting. I could barely stay awake.",
+    "label": 0,
+    "type": "barely_awake"
+  },
+  {
+    "text": "Best movie ever! If you enjoy watching paint dry.",
+    "label": 0,
+    "type": "paint_dry"
+  },
+  {
+    "text": "Absolutely riveting. I only checked my phone 47 times.",
+    "label": 0,
+    "type": "checked_phone"
+  },
+  {
+    "text": "Oscar-worthy performance! Said no one ever.",
+    "label": 0,
+    "type": "said_no_one"
+  },
+  {
+    "text": "Well, that was two hours well spent. I guess.",
+    "label": 0,
+    "type": "well_spent_guess"
+  },
+  {
+    "text": "I'm so glad I paid money to see this masterpiece.",
+    "label": 0,
+    "type": "paid_money"
+  },
+  {
+    "text": "Really lived up to the hype. Totally worth it.",
+    "label": 0,
+    "type": "lived_up_hype"
+  },
+  {
+    "text": "Oh wow!!! Such an incredible story!!! Not predictable at all!!!",
+    "label": 0,
+    "type": "excessive_exclamation"
+  },
+  {
+    "text": "Amazing!!! Every cliche in the book!!! So creative!!!",
+    "label": 0,
+    "type": "so_creative"
+  },
+  {
+    "text": "Sure, the CGI was great. But everything else? Terrible.",
+    "label": 0,
+    "type": "sure_but"
+  },
+  {
+    "text": "Yeah, I 'loved' it. Just like I 'love' root canals.",
+    "label": 0,
+    "type": "loved_quotes"
+  }
+]

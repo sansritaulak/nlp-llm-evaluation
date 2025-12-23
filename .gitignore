@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# Environments
+venv/
+.env
+.env.*
+
+# Experiment tracking
+wandb/
+mlruns/
+
+# Outputs / artifacts
+outputs/
+artifacts/
+checkpoints/
+*.pt
+*.bin
+*.ckpt
+*.onnx
+
+# Data
+data/raw/
+data/processed/
+
+# OS
+.DS_Store
+Thumbs.db

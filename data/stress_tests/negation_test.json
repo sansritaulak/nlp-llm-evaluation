@@ -1,0 +1,132 @@
+[
+  {
+    "text": "This movie was not bad at all, actually quite enjoyable.",
+    "label": 1,
+    "type": "double_negative"
+  },
+  {
+    "text": "I can't say I didn't like it. It was pretty good.",
+    "label": 1,
+    "type": "double_negative"
+  },
+  {
+    "text": "It's not that the movie wasn't entertaining.",
+    "label": 1,
+    "type": "double_negative"
+  },
+  {
+    "text": "The movie was not good. Very disappointing.",
+    "label": 0,
+    "type": "simple_negation"
+  },
+  {
+    "text": "Not terrible, but definitely not great either.",
+    "label": 0,
+    "type": "simple_negation"
+  },
+  {
+    "text": "This film was not worth watching.",
+    "label": 0,
+    "type": "simple_negation"
+  },
+  {
+    "text": "Never have I seen such a boring film.",
+    "label": 0,
+    "type": "never_negation"
+  },
+  {
+    "text": "No amount of good acting could save this plot.",
+    "label": 0,
+    "type": "no_negation"
+  },
+  {
+    "text": "I have never been so entertained by a movie.",
+    "label": 1,
+    "type": "never_negation"
+  },
+  {
+    "text": "Not the best movie I've ever seen, but still enjoyable.",
+    "label": 1,
+    "type": "qualified_positive"
+  },
+  {
+    "text": "It's not perfect, but it's a solid film.",
+    "label": 1,
+    "type": "qualified_positive"
+  },
+  {
+    "text": "Not excellent, but definitely not bad.",
+    "label": 1,
+    "type": "qualified_positive"
+  },
+  {
+    "text": "Not disappointing at all. I really enjoyed it.",
+    "label": 1,
+    "type": "negated_negative"
+  },
+  {
+    "text": "Definitely not a waste of time. Highly recommended.",
+    "label": 1,
+    "type": "negated_negative"
+  },
+  {
+    "text": "I wasn't bored for a single moment.",
+    "label": 1,
+    "type": "negated_negative"
+  },
+  {
+    "text": "I wouldn't say I didn't enjoy it, but it wasn't great.",
+    "label": 0,
+    "type": "complex_negation"
+  },
+  {
+    "text": "Can't complain about the acting, but the plot was weak.",
+    "label": 0,
+    "type": "complex_negation"
+  },
+  {
+    "text": "Nothing special, but not terrible either. Just okay.",
+    "label": 0,
+    "type": "neutral_negative"
+  },
+  {
+    "text": "I can't say anything bad about this film. Loved it!",
+    "label": 1,
+    "type": "cant_say_bad"
+  },
+  {
+    "text": "Not once did I think about leaving the theater.",
+    "label": 1,
+    "type": "not_once"
+  },
+  {
+    "text": "There's nothing I didn't like about this movie.",
+    "label": 1,
+    "type": "nothing_didnt_like"
+  },
+  {
+    "text": "Not good, not bad, just meh.",
+    "label": 0,
+    "type": "truly_neutral"
+  },
+  {
+    "text": "I'm not unhappy I watched it.",
+    "label": 1,
+    "type": "not_unhappy"
+  },
+  {
+    "text": "It's not that I hated it, I just didn't like it.",
+    "label": 0,
+    "type": "not_that"
+  },
+  {
+    "text": "I wouldn't not recommend it.",
+    "label": 1,
+    "type": "wouldnt_not"
+  },
+  {
+    "text": "Not the worst movie ever, but close.",
+    "label": 0,
+    "type": "not_worst_but"
+  }
+]

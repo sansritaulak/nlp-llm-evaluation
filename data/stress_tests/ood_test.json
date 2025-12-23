@@ -1,0 +1,102 @@
+[
+  {
+    "text": "This medical documentary was incredibly informative and well-made.",
+    "label": 1,
+    "type": "medical"
+  },
+  {
+    "text": "The documentary about vaccines was poorly researched and biased.",
+    "label": 0,
+    "type": "medical"
+  },
+  {
+    "text": "This political documentary presents a compelling and balanced view.",
+    "label": 1,
+    "type": "political"
+  },
+  {
+    "text": "Politically biased propaganda disguised as a documentary.",
+    "label": 0,
+    "type": "political"
+  },
+  {
+    "text": "An excellent educational film that teaches complex concepts clearly.",
+    "label": 1,
+    "type": "educational"
+  },
+  {
+    "text": "Boring educational content that fails to engage the audience.",
+    "label": 0,
+    "type": "educational"
+  },
+  {
+    "text": "The animation quality was stunning and the story was heartwarming.",
+    "label": 1,
+    "type": "animation"
+  },
+  {
+    "text": "Poor animation and a childish plot that even kids won't enjoy.",
+    "label": 0,
+    "type": "animation"
+  },
+  {
+    "text": "This foreign film offers a unique cultural perspective and beautiful cinematography.",
+    "label": 1,
+    "type": "foreign"
+  },
+  {
+    "text": "Slow-paced foreign film with subtitles that dragged on forever.",
+    "label": 0,
+    "type": "foreign"
+  },
+  {
+    "text": "A brilliant short film that tells a complete story in 15 minutes.",
+    "label": 1,
+    "type": "short"
+  },
+  {
+    "text": "This short film felt incomplete and poorly edited.",
+    "label": 0,
+    "type": "short"
+  },
+  {
+    "text": "A timeless classic that holds up remarkably well today.",
+    "label": 1,
+    "type": "classic"
+  },
+  {
+    "text": "This old film feels dated and the pacing is painfully slow.",
+    "label": 0,
+    "type": "classic"
+  },
+  {
+    "text": "An innovative experimental film that pushes artistic boundaries.",
+    "label": 1,
+    "type": "experimental"
+  },
+  {
+    "text": "Pretentious experimental nonsense that tries too hard to be artsy.",
+    "label": 0,
+    "type": "experimental"
+  },
+  {
+    "text": "The sound design and cinematography are technically flawless.",
+    "label": 1,
+    "type": "technical"
+  },
+  {
+    "text": "Poor audio quality and shaky camera work ruined the experience.",
+    "label": 0,
+    "type": "technical"
+  },
+  {
+    "text": "Perfect binge-worthy content for a lazy weekend at home.",
+    "label": 1,
+    "type": "streaming"
+  },
+  {
+    "text": "Not even worth the streaming service subscription fee.",
+    "label": 0,
+    "type": "streaming"
+  }
+]
